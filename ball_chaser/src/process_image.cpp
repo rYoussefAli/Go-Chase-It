@@ -10,7 +10,7 @@ void drive_robot(float lin_x, float ang_z)
 {
     // TODO: Request a service and pass the velocities to it to drive the robot
     // ROS_INFO_STREAM("Requesting velocities ...");
-    ROS_INFO_STREAM("{process_image} lin_x: "+std::to_string(lin_x)+ " ang_z: "+ std::to_string(ang_z));
+    // ROS_INFO_STREAM("{process_image} lin_x: "+std::to_string(lin_x)+ " ang_z: "+ std::to_string(ang_z));
 
     ball_chaser::DriveToTarget srv;
     srv.request.linear_x = (float)lin_x;
@@ -32,28 +32,29 @@ void process_image_callback(const sensor_msgs::Image img)
     // Depending on the white ball position, call the drive_bot function and pass velocities to it
     // Request a stop when there's no white ball seen by the camera
     int state;
-    for(int x; x<(img.height*img.step); x=x+160) {
+    for(int x; x<(img.height*img.step); x++) {
         state=0;
-        ROS_INFO_STREAM("pixel -> "+std::to_string(x));
-        ROS_INFO_STREAM("value -> "+std::to_string(img.data[x]));
+        // ROS_INFO_STREAM("pixel -> "+std::to_string(x));
+        // ROS_INFO_STREAM("value -> "+std::to_string(img.data[x]));
         if(img.data[x]==white_pixel) {
-            ROS_INFO_STREAM("Ball found");
+            // ROS_INFO_STREAM("Ball found");
             state = 1;
             float img_index = x%img.step;
             if(img_index <= img.step/3) {
-                drive_robot(0.5, 1);
-                ROS_INFO_STREAM("Turning left");
+                drive_robot(0, 1);
+                // ROS_INFO_STREAM("Turning left");
             }
-            else if (img_index <= (img.step/2)*3) {
+            else if (img_index <= (img.step*2/3)) {
                 drive_robot(0.5, 0);
-                ROS_INFO_STREAM("Forward");
+                // ROS_INFO_STREAM("Forward");
             }
             else {
-                drive_robot(1, -1);
-                ROS_INFO_STREAM("Turning right");
+                drive_robot(0, -1);
+                // ROS_INFO_STREAM("Turning right");
             }
+            
           
-          break;
+            break;
         }
         //else 
          //ROS_ERROR("Ball NOT found");

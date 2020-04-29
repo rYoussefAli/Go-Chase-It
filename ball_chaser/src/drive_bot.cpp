@@ -12,7 +12,7 @@ ros::Publisher motor_command_publisher;
 bool handle_drive_request(ball_chaser::DriveToTarget::Request& req, ball_chaser::DriveToTarget::Response& res) 
 {
 
-    ROS_INFO("DriveToTargetRequeste received - linear_x: %1.2f, angular_z: %1.2f", (float)req.linear_x, (float)req.angular_z);
+    // ROS_INFO("DriveToTargetRequeste received - linear_x: %1.2f, angular_z: %1.2f", (float)req.linear_x, (float)req.angular_z);
 
     // Create a motor_command object of type geometry_msgs::Twist
         geometry_msgs::Twist motor_command;
@@ -23,7 +23,7 @@ bool handle_drive_request(ball_chaser::DriveToTarget::Request& req, ball_chaser:
         motor_command_publisher.publish(motor_command);
 
     res.msg_feedback = "Linear x set to: "+std::to_string(motor_command.linear.x)+" and Angular z to: "+std::to_string(motor_command.angular.z);
-    ROS_INFO_STREAM(res.msg_feedback);
+    // ROS_INFO_STREAM(res.msg_feedback);
     return true;
 }
 

@@ -5224,7 +5224,7 @@
         <projection_type>perspective</projection_type>
       </camera>
     </gui>
-    <model name='my_robot'>
+    <!-- model name='my_robot'>
       <link name='robot_footprint'>
         <pose frame=''>0 0 0 0 -0 0</pose>
         <inertial>
@@ -5643,7 +5643,7 @@
         <robotNamespace>/</robotNamespace>
       </plugin>
       <pose frame=''>0 0 0 0 -0 0</pose>
-    </model>
+    </model -->
     <model name='myball'>
       <link name='link_0'>
         <pose frame=''>0 -0 0 0 -0 0</pose>

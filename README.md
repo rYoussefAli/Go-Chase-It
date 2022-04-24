@@ -23,7 +23,7 @@ $ catkin_init_workspace
 ```
 Download this git repo, extract the folders and remove the master folder
 ```
-$ git clone https://github.com/YoussefAli99/Go-Chase-It.git
+$ git clone https://github.com/rYoussefAli/Go-Chase-It.git
 $ cp -R Go-Chase-It/ball_chaser .
 $ cp -R Go-Chase-It/my_robot .
 $ rm -rf Go-Chase-It
